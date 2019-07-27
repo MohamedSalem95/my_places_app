@@ -42,8 +42,8 @@ class PlacesController extends Controller
             'lat' => 'required',
             'lng' => 'required'
         ]);
-        
-        /* we had set the $fillabe attribute on the Place Model 
+
+        /* we had set the $fillabe attribute on the Place Model
         so that we can use $request->all() safely
         */
         $place = new Place($request->all());
@@ -101,6 +101,7 @@ class PlacesController extends Controller
 
     public function dashboard(){
         $places = Place::latest()->paginate(4);
-        return view('places.dashboard', ['places' => $places]);
+        $places_count = Place::all()->count();
+        return view('places.dashboard', ['places' => $places, 'places_count' => $places_count]);
     }
 }

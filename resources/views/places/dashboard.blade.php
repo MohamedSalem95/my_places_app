@@ -3,12 +3,12 @@
 @section('title', 'Home')
 
 @section('content')
-    @php
+    {{--@php
         // we store the places number in a var to avoid hitting the database twice
         $places_count = $places->count()
-    @endphp
+    @endphp --}}
     <p class="text-muted">
-        All saved places 
+        All saved places
         <b> {{ $places_count }} {{ str_plural('place', $places_count) }} </b>
     </p>
 
@@ -22,7 +22,7 @@
                 <th> Lng </th>
                 <th> Time Added </th>
                 <th> Action </th>
-                
+
             </tr>
         </thead>
 
@@ -47,12 +47,13 @@
                 </tr>
 
             @empty
-                <p> 
-                    no places added yet you can add a new place 
+                <p>
+                    no places added yet you can add a new place
                     <a href="{{ route('places.create') }}"> here </a>
                 </p>
             @endforelse
         </tbody>
+        
 
     </table>
     {{ $places->links() }}
