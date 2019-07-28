@@ -11,4 +11,8 @@ class Place extends Model
     function getDateForHumansAttribute(){
         return $this->created_at->diffForHumans();
     }
+
+    function getCoorentatesAttribute(){
+        return "$this->lat, $this->lng";
+    }
 }

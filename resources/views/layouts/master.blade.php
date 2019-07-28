@@ -15,7 +15,7 @@
 
     </head>
     <body>
-      
+
         {{-- include our header --}}
         @include('layouts.header')
 
@@ -23,6 +23,11 @@
             {{-- include flash messages --}}
             @include('layouts.message')
             @yield('content')
+            <div class="row">
+                <div class="col text-right">
+                    <small class="text-muted"> version <b>1.1</b> </small>
+                </div>
+            </div>
         </div>
 
 

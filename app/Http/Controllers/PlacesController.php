@@ -7,38 +7,23 @@ use Illuminate\Http\Request;
 
 class PlacesController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $places = Place::all();
         return view('places.index', ['places' => $places]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('places.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $request->validate([
-            'place_name' => 'required|max:100',
-            'palce_address' => 'required|max:100',
+            'place_name' => 'required|string|max:100',
+            'palce_address' => 'required|string|max:100',
             'lat' => 'required',
             'lng' => 'required'
         ]);
@@ -53,52 +38,29 @@ class PlacesController extends Controller
                         ->with('success', 'place created successfully');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Place  $place
-     * @return \Illuminate\Http\Response
-     */
+
     public function show(Place $place)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Place  $place
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit(Place $place)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Place  $place
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Place $place)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Place  $place
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Place $place)
     {
         $place->delete();
         return back()->with('success', 'place deleted successfully');
     }
-
+    
     public function dashboard(){
         $places = Place::latest()->paginate(4);
         $places_count = Place::all()->count();
